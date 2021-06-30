@@ -13,7 +13,10 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: {},
+  rules: {
+    "react/prop-types": 0,
+    "react/jsx-key": 1,
+  },
   settings: {
     react: {
       createClass: "createReactClass", // Regex for Component Factory to use,
