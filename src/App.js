@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import Palette from './Palette'
+import React, { Component } from "react";
+import Palette from "./Palette";
 
-import seedColors from './seedColors'
+import seedColors from "./seedColors";
 
 export default class App extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class App extends Component {
       <div>
         <Palette {...seedColors[4]} />
       </div>
-    )
+    );
   }
 }
