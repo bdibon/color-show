@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     "react/prop-types": 0,
     "react/jsx-key": 1,
+    "no-unused-vars": 1,
   },
   settings: {
     react: {
