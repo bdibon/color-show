@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -78,12 +78,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewPaletteForm(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const [currentColor, setCurrentColor] = React.useState("teal");
-  const [colors, setColors] = React.useState([]);
-  const [newName, setNewName] = React.useState("");
+  const [open, setOpen] = useState(true);
+  const [currentColor, setCurrentColor] = useState("teal");
+  const [colors, setColors] = useState([]);
+  const [newColorName, setNewColorName] = useState("");
+  const [newPaletteName, setNewPaletteName] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
       return colors.every(
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
@@ -91,6 +92,11 @@ export default function NewPaletteForm(props) {
     });
     ValidatorForm.addValidationRule("isColorUnique", () => {
       return colors.every(({ color }) => color !== currentColor);
+    });
+    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
+      return props.palettes.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      );
     });
   });
 
@@ -102,21 +108,24 @@ export default function NewPaletteForm(props) {
     setOpen(false);
   };
 
-  const handleChange = (e) => {
-    setNewName(e.target.value);
+  const handleColorNameChange = (e) => {
+    setNewColorName(e.target.value);
+  };
+
+  const handlePaletteNameChange = (e) => {
+    setNewPaletteName(e.target.value);
   };
 
   const addNewColor = () => {
-    const newColor = { color: currentColor, name: newName };
+    const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
   };
 
   const savePalette = () => {
-    let newName = "New Test Palette";
     const newPalette = {
-      paletteName: newName,
+      paletteName: newPaletteName,
       colors,
-      id: newName.toLowerCase().replace(/ /g, "-"),
+      id: newColorName.toLowerCase().replace(/ /g, "-"),
     };
     props.savePalette(newPalette);
     props.history.push("/");
@@ -145,9 +154,22 @@ export default function NewPaletteForm(props) {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-          <Button variant="contained" color="primary" onClick={savePalette}>
-            Save Palette
-          </Button>
+          <ValidatorForm onSubmit={savePalette}>
+            <TextValidator
+              name="newPaletteName"
+              label="Palette Name"
+              value={newPaletteName}
+              onChange={handlePaletteNameChange}
+              validators={["required", "isPaletteNameUnique"]}
+              errorMessages={[
+                "Enter Palette Name",
+                "Palette name is already taken",
+              ]}
+            />
+            <Button variant="contained" color="primary" type="submit">
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -180,8 +202,9 @@ export default function NewPaletteForm(props) {
         />
         <ValidatorForm onSubmit={addNewColor}>
           <TextValidator
-            value={newName}
-            onChange={handleChange}
+            name="newColorName"
+            value={newColorName}
+            onChange={handleColorNameChange}
             validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
               "this field is required",

@@ -40,6 +40,7 @@ export default class App extends Component {
             <NewPaletteForm
               {...routeProps}
               savePalette={this.savePalette}
+              palettes={this.state.palettes}
             ></NewPaletteForm>
           )}
         ></Route>
