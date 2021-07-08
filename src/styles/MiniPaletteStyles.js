@@ -6,8 +6,9 @@ const styles = {
     padding: "0.5rem",
     position: "relative",
     overflow: "hidden",
-    "&:hover": {
-      cursor: "pointer",
+    cursor: "pointer",
+    "&:hover svg": {
+      opacity: 1,
     },
   },
   colors: {
@@ -38,6 +39,20 @@ const styles = {
     margin: "0 auto",
     posiiton: "relative",
     marginBottom: "-3.5px",
+  },
+  delete: {},
+  deleteIcon: {
+    color: "white",
+    backgroundColor: "red",
+    width: "20px",
+    height: "20px",
+    position: "absolute",
+    top: "0",
+    right: "0",
+    padding: "10px",
+    zIndex: "10",
+    opacity: 0,
+    transition: "all .3s ease-in-out",
   },
 };
 
