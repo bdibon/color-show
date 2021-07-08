@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 export default {
   NavBar: {
     display: "flex",
@@ -19,6 +21,9 @@ export default {
       textDecoration: "none",
       color: "black",
     },
+    [sizes.down("xs")]: {
+      display: "none",
+    },
   },
   slider: {
     display: "inline-block",
@@ -39,6 +44,9 @@ export default {
       },
     "& .rc-slider-track": {
       backgroundColor: "transparent",
+    },
+    [sizes.down("md")]: {
+      width: "150px",
     },
   },
   selectContainer: {
