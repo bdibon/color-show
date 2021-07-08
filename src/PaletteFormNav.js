@@ -6,7 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import PaletteIcon from "@material-ui/icons/Palette";
 import { Button } from "@material-ui/core";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { useStyles } from "./styles/PaletteFormNavStyles";
@@ -41,7 +41,7 @@ export default function PaletteFormNav(props) {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <PaletteIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Create a Palette
