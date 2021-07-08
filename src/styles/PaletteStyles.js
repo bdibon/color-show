@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 const styles = {
   Palette: {
     height: "100vh",
@@ -33,6 +35,18 @@ const styles = {
       textTransform: "uppercase",
       top: "50%",
       width: "100px",
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: "33.3333%",
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: "20%",
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: "10%",
     },
   },
 };

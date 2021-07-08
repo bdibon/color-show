@@ -15,11 +15,11 @@ const styles = {
     },
     [sizes.down("lg")]: {
       width: "25%",
-      height: (props) => (props.showingFullPalette ? "20%" : "50%"),
+      height: (props) => (props.showingFullPalette ? "20%" : "33.3333%"),
     },
     [sizes.down("md")]: {
       width: "50%",
-      height: (props) => (props.showingFullPalette ? "10%" : "50%"),
+      height: (props) => (props.showingFullPalette ? "10%" : "20%"),
     },
     [sizes.down("xs")]: {
       width: "100%",
@@ -120,6 +120,9 @@ const styles = {
       textShadow: "1px 2px solid black",
       textTransform: "uppercase",
       width: "100%",
+      [sizes.down("xs")]: {
+        fontSize: "6rem",
+      },
     },
     "& p": {
       fontSize: "2rem",
