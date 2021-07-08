@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     height: "64px",
   },
   appBarShift: {
@@ -39,11 +40,25 @@ const useStyles = makeStyles((theme) => ({
   hide: {
     display: "none",
   },
+  navBtns: {
+    marginRight: "1rem",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+  button: {
+    margin: "0 0.5rem",
+  },
 }));
 
 export default function PaletteFormNav(props) {
   const classes = useStyles();
   const { savePalette, handleDrawerOpen, open, palettes } = props;
+
+  const [formShowing, setFormShowing] = useState(false);
+  const showForm = () => {
+    setFormShowing(true);
+  };
 
   return (
     <Fragment>
@@ -70,14 +85,28 @@ export default function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <PaletteMetaForm savePalette={savePalette} palettes={palettes} />
           <Link to="/">
-            <Button variant="contained" color="secondary">
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="secondary"
+            >
               Go Back
             </Button>
           </Link>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            onClick={showForm}
+          >
+            Save
+          </Button>
         </div>
       </AppBar>
+      {formShowing && (
+        <PaletteMetaForm savePalette={savePalette} palettes={palettes} />
+      )}
     </Fragment>
   );
 }
