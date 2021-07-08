@@ -59,6 +59,9 @@ export default function PaletteFormNav(props) {
   const showForm = () => {
     setFormShowing(true);
   };
+  const hideForm = () => {
+    setFormShowing(false);
+  };
 
   return (
     <Fragment>
@@ -105,7 +108,11 @@ export default function PaletteFormNav(props) {
         </div>
       </AppBar>
       {formShowing && (
-        <PaletteMetaForm savePalette={savePalette} palettes={palettes} />
+        <PaletteMetaForm
+          savePalette={savePalette}
+          palettes={palettes}
+          hideForm={hideForm}
+        />
       )}
     </Fragment>
   );
