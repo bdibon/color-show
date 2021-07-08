@@ -18,6 +18,7 @@ export default function ColorPickerForm(props) {
 
   const handleSubmit = () => {
     addNewColor({ color: currentColor, name: newColorName });
+    setNewColorName("");
   };
 
   useEffect(() => {
