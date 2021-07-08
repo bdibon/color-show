@@ -9,7 +9,7 @@ const styles = {
     display: "inline-block",
     height: "25%",
     margin: "0 auto",
-    marginBottom: "-3.9px",
+    marginBottom: "-5.6px",
     position: "relative",
     width: "20%",
     "&:hover svg": {
