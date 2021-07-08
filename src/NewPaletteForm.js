@@ -94,11 +94,12 @@ export default function NewPaletteForm(props) {
     setColors([]);
   };
 
-  const savePalette = (newPaletteName) => {
+  const savePalette = ({ paletteName, emoji }) => {
     const newPalette = {
-      paletteName: newPaletteName,
+      paletteName,
+      emoji,
       colors,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      id: paletteName.toLowerCase().replace(/ /g, "-"),
     };
     props.savePalette(newPalette);
     props.history.push("/");
