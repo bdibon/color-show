@@ -11,6 +11,7 @@ import PaletteFormNav from "./PaletteFormNav.js";
 import ColorPickerForm from "./ColorPickerForm.js";
 import { arrayMove } from "react-sortable-hoc";
 import { useStyles } from "./styles/NewPaletteFormStyles";
+import seedColors from "./seedColors";
 
 NewPaletteForm.defaultProps = {
   maxColors: 20,
@@ -20,7 +21,7 @@ export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
-  const [colors, setColors] = useState(props.palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
 
   const paletteIsFull = colors.length >= props.maxColors;
 

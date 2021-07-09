@@ -1,3 +1,4 @@
+import chroma from "chroma-js";
 import sizes from "./sizes";
 
 export default {
@@ -29,7 +30,10 @@ export default {
   boxContent: {
     bottom: "0px",
     boxSizing: "border-box",
-    color: "rgba(0, 0, 0, 0.5)",
+    color: (props) =>
+      chroma(props.color).luminance() <= 0.08
+        ? "rgba(255, 255, 255, 0.8)"
+        : "rgba(0, 0, 0, 0.5)",
     display: "flex",
     fontSize: "12px",
     justifyContent: "space-between",

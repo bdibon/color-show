@@ -41,7 +41,11 @@ export default function ColorPickerForm(props) {
         color={currentColor}
         onChangeComplete={handleColorChange}
       />
-      <ValidatorForm className={classes.form} onSubmit={handleSubmit}>
+      <ValidatorForm
+        className={classes.form}
+        onSubmit={handleSubmit}
+        instantValidate={false}
+      >
         <TextValidator
           className={classes.colorNameInput}
           name="newColorName"
