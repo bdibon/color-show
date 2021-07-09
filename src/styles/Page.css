@@ -1,0 +1,19 @@
+.Page {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.Page-enter {
+  opacity: 0;
+}
+
+.Page-enter-active {
+  opacity: 1;
+}
+
+.Page-exit-active {
+  opacity: 0;
+}

@@ -12,11 +12,17 @@ import { Picker } from "emoji-mart";
 export default function PaletteMetaForm(props) {
   const { savePalette, hideForm } = props;
 
+  const [stage, setStage] = useState("form");
+  const showEmojiPicker = () => {
+    setStage("emoji");
+  };
+
   const [newPaletteName, setNewPaletteName] = useState("");
   const handlePaletteNameChange = (e) => {
     setNewPaletteName(e.target.value);
   };
   const submitPalette = (emoji) => {
+    setStage(null);
     savePalette({ paletteName: newPaletteName, emoji: emoji.native });
   };
 
@@ -27,11 +33,6 @@ export default function PaletteMetaForm(props) {
       );
     });
   });
-
-  const [stage, setStage] = useState("form");
-  const showEmojiPicker = () => {
-    setStage("emoji");
-  };
 
   return (
     <React.Fragment>
